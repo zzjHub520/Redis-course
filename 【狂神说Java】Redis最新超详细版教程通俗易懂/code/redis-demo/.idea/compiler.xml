@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
-      <module name="redis01-jedis" target="1.5" />
+      <module name="redis01-jedis" target="7" />
     </bytecodeTargetLevel>
   </component>
 </project>
