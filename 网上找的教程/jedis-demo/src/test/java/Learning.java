@@ -1,5 +1,8 @@
 import org.junit.Test;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.ListPosition;
+
+import java.util.Set;
 
 public class Learning {
 
@@ -15,4 +18,38 @@ public class Learning {
         System.out.println("collections区间0-3的元素：" + jedis.lrange("collections", 0, 3));
         System.out.println("===============================");
     }
+
+    @Test
+    public void testKey() {
+        System.out.println("按索引查询：" + jedis.select(5));
+        System.out.println("清空数据：" + jedis.flushDB());
+        System.out.println("判断某个键是否存在：" + jedis.exists("username"));
+        System.out.println("新增<'username','zzh'>的键值对：" + jedis.set("username", "zzh"));
+        System.out.println("新增<'password','password'>的键值对：" + jedis.set("password", "password"));
+        System.out.println("新增<'username1','zzh'>的键值对：" + jedis.set("username1", "zzh"));
+        System.out.println("新增<'password1','password'>的键值对：" + jedis.set("password1", "password"));
+        System.out.println("新增<'username2','zzh'>的键值对：" + jedis.set("username2", "zzh"));
+        System.out.println("新增<'password2','password'>的键值对：" + jedis.set("password2", "password"));
+        System.out.print("系统中所有的键如下：");
+        Set<String> keys = jedis.keys("passwor*");
+        System.out.println(keys);
+
+    }
+
+    @Test
+    public void bb(){
+        jedis.flushDB();
+        System.out.println("===========添加一个list===========");
+//        jedis.lpush("collections", "ArrayList", "Vector", "Stack", "HashMap", "WeakHashMap", "LinkedHashMap");
+        jedis.linsert("collect", ListPosition.BEFORE,  "-1","WeakHashMap0");
+//        jedis.lpush("collections", "ArrayList");
+//        jedis.lpush("collections", "Vector");
+//        jedis.lpush("collections", "Stack");
+//        jedis.lpush("collections", "HashMap");
+//        jedis.lpush("collections", "WeakHashMap");
+//        jedis.lpush("collections", "LinkedHashMap");
+    }
+
+
+
 }
